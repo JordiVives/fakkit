@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios';
 
 export default class LinkList extends Component {
     constructor() {
@@ -8,15 +9,31 @@ export default class LinkList extends Component {
             loading: true,
         }
     }
+
+    componentDidMount = () => {
+        axios.get("http://localhost:4000/links")
+            .then(response => {
+                this.setState({
+                    links: response.data,
+                    loading: false,
+                })
+            });
+    }
+
+
     render() {
-        let linklist;
         if (this.state.loading) {
-            linklist = <p>Loading...</p>
+            return <p>Loading...</p>
         }
+        let { links } = this.state;
         return (
-        <div>
-            {linklist}
-        </div>
-        )
+            <div>
+                {links.map(link =>
+                    <div>
+                        <a href={link.url}>{link.title}</a>
+                    </div>
+                )}
+            </div>
+        )        
     }
 }
