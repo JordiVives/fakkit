@@ -1,0 +1,17 @@
+
+.new-link{
+    padding: 1.5em 2em;
+}
+
+.field{
+    margin-bottom: .7em;
+}
+
+.field label{
+    display: inline-block;
+    width: 5em;
+}
+
+.field input{
+    width: 32em;
+}
